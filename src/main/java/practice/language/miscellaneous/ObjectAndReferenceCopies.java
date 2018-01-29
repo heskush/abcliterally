@@ -2,6 +2,9 @@ package practice.language.miscellaneous;
 
 // author -- hemantkumar
 
+import practice.language.sample.Address;
+import practice.language.sample.Person;
+
 /**
  * @author hemantkumar Copies can be of three types: 1. Reference Copies 2. ShallowCopy 3. DeepCopy . Last two are types of object
  *         copies.
@@ -23,7 +26,6 @@ public class ObjectAndReferenceCopies {
     System.out.printf("oldReference: %s %n", oldReference);
     Address newReference = oldReference; // This is a reference copy. Any change done in oldReference, would be reflected in
                                          // newReference
-    System.out.printf("oldReference.equals(newReference) : %s%n", oldReference.equals(newReference));
     System.out.printf("oldReference==newReference : %s%n", oldReference == newReference);
     terminate();
 
@@ -46,10 +48,6 @@ public class ObjectAndReferenceCopies {
     System.out.printf("personCopy : %s%n", personCopy);
     System.out.printf("personOriginal==personCopy : %s%n", personOriginal == personCopy);
     System.out.printf("personOriginal.address==personCopy.address : %s%n", personOriginal.address == personCopy.address);
-    System.out.printf("personOriginal.equals(personCopy) : %s%n", personOriginal.equals(personCopy));
-    System.out.printf("personOriginal.address.equals(personCopy.address : %s%n",
-        personOriginal.address.equals(personCopy.address));
-
     terminate();
 
   }
@@ -68,10 +66,6 @@ public class ObjectAndReferenceCopies {
     System.out.printf("personCopy : %s%n", personCopy);
     System.out.printf("personOriginal==personCopy : %s%n", personOriginal == personCopy);
     System.out.printf("personOriginal.address==personCopy.address : %s%n", personOriginal.address == personCopy.address);
-    System.out.printf("personOriginal.equals(personCopy) : %s%n", personOriginal.equals(personCopy));
-    System.out.printf("personOriginal.address.equals(personCopy.address : %s%n",
-        personOriginal.address.equals(personCopy.address));
-
     terminate();
 
   }
@@ -80,43 +74,4 @@ public class ObjectAndReferenceCopies {
     System.out.println("----------------------------------------------------");
   }
 
-}
-
-class Person {
-  int val;
-  Address address;
-
-  public Person(int val, Address address) {
-    this.val = val;
-    this.address = address;
-  }
-
-  public Person shallowCopy() {
-    Person personShallow = new Person(this.val, this.address);
-    return personShallow;
-
-  }
-
-  public Person deepCopy() {
-    Person personDeep = new Person(this.val, new Address(this.address.streetNumber));
-    return personDeep;
-  }
-
-  @Override
-  public String toString() {
-    return "Person{" + "val=" + val + ", address=" + address + '}';
-  }
-}
-
-class Address {
-  int streetNumber;
-
-  public Address(int streetNumber) {
-    this.streetNumber = streetNumber;
-  }
-
-  @Override
-  public String toString() {
-    return "Address{" + "streetNumber=" + streetNumber + '}';
-  }
 }
