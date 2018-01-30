@@ -1,7 +1,10 @@
 package practice.coding.self.trees;
 
+import java.util.LinkedList;
 import java.util.Stack;
 import java.util.function.Consumer;
+
+import practice.language.util.DemonstrationUtil;
 
 // author -- hemantkumar
 
@@ -102,6 +105,24 @@ public class TreeTraversal {
   }
 
   public static void levelOrderTraversal(TreeNode treeNode, Consumer<TreeNode> consumer) {
+    if (treeNode == null)
+      return;
+    LinkedList<TreeNode> queue = new LinkedList<>();
+    queue.add(treeNode);
+    while (!queue.isEmpty()) {
+      int currentLevelCount = queue.size();
+      DemonstrationUtil.terminate();
+      for (int i = 0; i <= currentLevelCount - 1; i++) {
+        TreeNode first = queue.removeFirst();
+        consumer.accept(first);
+        if (first.left != null) {
+          queue.add(first.left);
+        }
+        if (first.right != null) {
+          queue.add(first.right);
+        }
+      }
+    }
 
   }
 

@@ -1,25 +1,25 @@
 package practice.language.collectionsframework;
 
-import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 
 import practice.language.sample.Person;
 
 // author -- hemantkumar
+
+/**
+ * All examples from https://docs.oracle.com/javase/tutorial/collections/streams/reduction.html
+ */
 public class StreamAPI {
   public static void main(String[] args) {
-    List<Person> personList = Person.generateCollection(1);
-    System.out.println(Arrays.toString(personList.toArray()));
-    Person p = personList.get(0);
+    List<Person> personList = Person.generateCollection(100);
+    personList.forEach(System.out::println);
+    personList.sort(Comparator.comparing(Person::getVal));
+    System.out.println();
+    personList.forEach(System.out::println);
 
-    Map<Integer, List<Person>> collect = personList.stream().collect(Collectors.groupingBy(Person::getVal));
-    personList.get(0).val = 12345;
-    Person x = personList.get(0);
-    // collect.values().forEach(x -> System.out.println(x));
-
-    System.out.println("yoo");
-
+    List<String> singletonList = Collections.singletonList("123");
+    singletonList.add("129");
   }
 }

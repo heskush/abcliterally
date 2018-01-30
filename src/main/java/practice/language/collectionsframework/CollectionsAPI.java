@@ -38,7 +38,7 @@ public class CollectionsAPI {
   /**
    * toArray(T[] arr) works like the previous version expect for the fact that it type cast the collection elements to the type of
    * the array passed. If the collections fits inside the array then the same array is used otherwise a new array is created. If
-   * the the size of the array is more than the remaining elements are filled with null.
+   * the the size of the array is more then the remaining elements are filled with null.
    */
   public static void demostrateToArrayV2() {
     System.out.println("CollectionsAPI.demostrateToArrayV2");
