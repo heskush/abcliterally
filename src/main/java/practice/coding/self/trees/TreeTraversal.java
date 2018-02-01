@@ -126,4 +126,34 @@ public class TreeTraversal {
 
   }
 
+  public static void levelOrderTraversalReverse(TreeNode treeNode, Consumer<TreeNode> consumer) {
+    if (treeNode == null) {
+      return;
+    }
+    LinkedList<TreeNode> queue = new LinkedList<>();
+    Stack<TreeNode> stack = new Stack<>();
+    queue.push(treeNode);
+    while (!queue.isEmpty()) {
+      int currentLevelCount = queue.size();
+      for (int i = 0; i < currentLevelCount; i++) {
+        TreeNode firstNode = queue.removeFirst();
+        stack.push(firstNode);
+        if (firstNode.right != null) {
+          queue.addLast(firstNode.right);
+        }
+        if (firstNode.left != null) {
+          queue.addLast(firstNode.left);
+
+        }
+
+      }
+
+    }
+
+    while (!stack.isEmpty()) {
+      consumer.accept(stack.pop());
+    }
+
+  }
+
 }
