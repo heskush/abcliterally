@@ -1,6 +1,8 @@
 package practice.coding.self.trees;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Stack;
 import java.util.function.Consumer;
 
@@ -153,6 +155,34 @@ public class TreeTraversal {
     while (!stack.isEmpty()) {
       consumer.accept(stack.pop());
     }
+
+  }
+
+  // Works for both PreOrder and level order traversal.
+  public static <T> TreeNode constructTreeFromInorderAndPreorderTraversal(List<T> inOrder, List<T> preOrder) {
+    // Assume that the first element of the preOrder is the root.
+    // BASE CASE: only one element left.
+    if (inOrder.size() == 0) {
+      return null;
+    }
+    if (inOrder.size() == 1) {
+      return new TreeNode(null, null, inOrder.get(0));
+    }
+    int n = inOrder.size();
+    T subtreeRoot = preOrder.get(0);
+    int rootIndex = inOrder.indexOf(subtreeRoot);
+
+    ArrayList<T> leftInOrder = rootIndex != 0 ? new ArrayList<>(inOrder.subList(0, rootIndex)) : new ArrayList<>();
+    ArrayList<T> rightInOrder = rootIndex != n - 1 ? new ArrayList<>(inOrder.subList(rootIndex + 1, n)) : new ArrayList<>();
+
+    ArrayList<T> leftPreOrder = new ArrayList<>(preOrder);
+    ArrayList<T> rightPreOrder = new ArrayList<>(preOrder);
+    leftPreOrder.retainAll(leftInOrder);
+    rightPreOrder.retainAll(rightInOrder);
+    TreeNode rootNode = new TreeNode(null, null, subtreeRoot);
+    rootNode.left = constructTreeFromInorderAndPreorderTraversal(leftInOrder, leftPreOrder);
+    rootNode.right = constructTreeFromInorderAndPreorderTraversal(rightInOrder, rightPreOrder);
+    return rootNode;
 
   }
 
