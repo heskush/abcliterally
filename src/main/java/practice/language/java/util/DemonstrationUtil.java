@@ -1,4 +1,4 @@
-package practice.language.util;
+package practice.language.java.util;
 
 // author -- hemantkumar
 public class DemonstrationUtil {

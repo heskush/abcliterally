@@ -1,4 +1,4 @@
-package practice.language.sample;
+package practice.language.java.sample;
 
 public class Address {
   public int streetNumber;

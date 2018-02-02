@@ -1,4 +1,4 @@
-package practice.language.generics;
+package practice.language.java.generics;
 
 import java.util.List;
 

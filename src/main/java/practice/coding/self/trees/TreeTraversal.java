@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Stack;
 import java.util.function.Consumer;
 
-import practice.language.util.DemonstrationUtil;
+import practice.language.java.util.DemonstrationUtil;
 
 // author -- hemantkumar
 
@@ -101,6 +101,10 @@ public class TreeTraversal {
 
   }
 
+  /*
+   * This is different and more difficult than the previous two because the corresponding recursion is not tail recursive because
+   * we even need to print the node after the recursive call has been made to it's left and right nodes.
+   */
   public static void iterativePostOrderTraversal(TreeNode treeNode, Consumer<TreeNode> consumer) {
     Stack<TreeNode> stack = new Stack<>();
 
@@ -158,8 +162,13 @@ public class TreeTraversal {
 
   }
 
+  /*
+   * TREE CONSTRUCTION FROM TRAVERSAL ORDERS: For a binary tree, inorder traversal complimented with (preorder,postorder or level
+   * order)is the only way to construct a generic binary tree.
+   */
+
   // Works for both PreOrder and level order traversal.
-  public static <T> TreeNode constructTreeFromInorderAndPreorderTraversal(List<T> inOrder, List<T> preOrder) {
+  public static <T> TreeNode constructFromInAndPreTraversal(List<T> inOrder, List<T> preOrder) {
     // Assume that the first element of the preOrder is the root.
     // BASE CASE: only one element left.
     if (inOrder.size() == 0) {
@@ -180,10 +189,14 @@ public class TreeTraversal {
     leftPreOrder.retainAll(leftInOrder);
     rightPreOrder.retainAll(rightInOrder);
     TreeNode rootNode = new TreeNode(null, null, subtreeRoot);
-    rootNode.left = constructTreeFromInorderAndPreorderTraversal(leftInOrder, leftPreOrder);
-    rootNode.right = constructTreeFromInorderAndPreorderTraversal(rightInOrder, rightPreOrder);
+    rootNode.left = constructFromInAndPreTraversal(leftInOrder, leftPreOrder);
+    rootNode.right = constructFromInAndPreTraversal(rightInOrder, rightPreOrder);
     return rootNode;
 
+  }
+
+  public static <T> TreeNode constructFullFromPreAndPost() {
+    return null;
   }
 
 }

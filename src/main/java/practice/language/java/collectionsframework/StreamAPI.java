@@ -1,10 +1,10 @@
-package practice.language.collectionsframework;
+package practice.language.java.collectionsframework;
 
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 
-import practice.language.sample.Person;
+import practice.language.java.sample.Person;
 
 // author -- hemantkumar
 

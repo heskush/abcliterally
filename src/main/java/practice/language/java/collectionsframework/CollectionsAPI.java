@@ -1,4 +1,4 @@
-package practice.language.collectionsframework;
+package practice.language.java.collectionsframework;
 
 // author -- hemantkumar
 
@@ -6,8 +6,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import practice.language.sample.Person;
-import practice.language.util.DemonstrationUtil;
+import practice.language.java.sample.Person;
+import practice.language.java.util.DemonstrationUtil;
 
 /**
  * This is not a proper overview of the collections framework but rather a demonstration of some of the more subtle aspects of the

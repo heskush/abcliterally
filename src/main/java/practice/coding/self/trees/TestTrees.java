@@ -13,7 +13,7 @@ public class TestTrees {
     // TreeTraversal.iterativePreOrderTraversal(sampleTreeRoot, x -> System.out.println(x));
     // TreeTraversal.levelOrderTraversal(sampleTreeRoot, System.out::println);
     // TreeTraversal.levelOrderTraversalReverse(sampleTreeRoot, System.out::println);
-    TreeNode n = TreeTraversal.constructTreeFromInorderAndPreorderTraversal(Arrays.asList(4, 8, 10, 12, 14, 20, 22),
+    TreeNode n = TreeTraversal.constructFromInAndPreTraversal(Arrays.asList(4, 8, 10, 12, 14, 20, 22),
         Arrays.asList(20, 8, 22, 4, 12, 10, 14));
     TreeTraversal.levelOrderTraversal(n, System.out::println);
   }

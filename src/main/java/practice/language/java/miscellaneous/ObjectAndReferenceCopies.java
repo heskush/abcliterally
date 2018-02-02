@@ -1,9 +1,9 @@
-package practice.language.miscellaneous;
+package practice.language.java.miscellaneous;
 
 // author -- hemantkumar
 
-import practice.language.sample.Address;
-import practice.language.sample.Person;
+import practice.language.java.sample.Address;
+import practice.language.java.sample.Person;
 
 /**
  * @author hemantkumar Copies can be of three types: 1. Reference Copies 2. ShallowCopy 3. DeepCopy . Last two are types of object

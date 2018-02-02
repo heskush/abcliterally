@@ -1,4 +1,4 @@
-package practice.language.sample;
+package practice.language.java.sample;
 
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
