@@ -1,4 +1,4 @@
-package practice.coding.self.trees;
+package practice.coding.gfg.trees;
 
 // author -- hemantkumar
 public class TreeNode {

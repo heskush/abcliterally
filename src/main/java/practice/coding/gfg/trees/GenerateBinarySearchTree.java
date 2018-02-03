@@ -1,4 +1,4 @@
-package practice.coding.self.trees;
+package practice.coding.gfg.trees;
 
 import java.util.List;
 import java.util.stream.Collectors;

@@ -1,8 +1,8 @@
 package practice.language.java.collectionsframework;
 
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import practice.language.java.sample.Person;
 
@@ -14,12 +14,7 @@ import practice.language.java.sample.Person;
 public class StreamAPI {
   public static void main(String[] args) {
     List<Person> personList = Person.generateCollection(100);
-    personList.forEach(System.out::println);
-    personList.sort(Comparator.comparing(Person::getVal));
-    System.out.println();
-    personList.forEach(System.out::println);
+    Arrays.stream(new Integer[] { 1, 2 }).collect(Collectors.toList());
 
-    List<String> singletonList = Collections.singletonList("123");
-    singletonList.add("129");
   }
 }
