@@ -176,7 +176,6 @@ public class TreeTraversal {
 
   /*
    *
-   * TODO: COMPLETE IT
    *
    * https://www.geeksforgeeks.org/perfect-binary-tree-specific-level-order-traversal/
    */
@@ -225,9 +224,9 @@ public class TreeTraversal {
 
   public static void main(String[] args) {
 
-    // alternateLevelOrderTraversal(TreeGenerator.generatePerfectBinaryTree(5), System.out::println);
+    alternateLevelOrderTraversal(TreeGenerator.generatePerfectBinaryTree(5), x -> System.out.println((Integer) x.data + 1));
 
-    levelOrderTraversal(TreeGenerator.generatePerfectBinaryTree(5), System.out::println);
+    // levelOrderTraversal(TreeGenerator.generatePerfectBinaryTree(5), System.out::println);
 
   }
 

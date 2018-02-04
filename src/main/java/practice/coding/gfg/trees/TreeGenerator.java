@@ -62,7 +62,7 @@ public class TreeGenerator {
     if (nLevels <= 0) {
       return null;
     }
-    int numberOfNodes = (2 * ((int) Math.pow(2, nLevels - 1) - 1));
+    int numberOfNodes = (1 * ((int) Math.pow(2, nLevels) - 1));
 
     Map<Integer, TreeNode> treeNodeMap = IntStream.range(0, numberOfNodes).mapToObj(x -> x)
         .collect(Collectors.toMap(Function.identity(), x -> new TreeNode(null, null, x)));
