@@ -1,12 +1,14 @@
 package practice.coding.gfg.trees;
 
 import java.util.List;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 // author -- hemantkumar
-public class GenerateBinarySearchTree {
-  private static TreeNode sampleTree;
+public class TreeGenerator {
+  private static TreeNode sampleBSTRoot;
   static {
     List<TreeNode> treeNodeList =
         IntStream.rangeClosed(0, 10).mapToObj(x -> new TreeNode(null, null, x)).collect(Collectors.toList());
@@ -22,19 +24,19 @@ public class GenerateBinarySearchTree {
     treeNodeList.get(7).right = treeNodeList.get(9);
     treeNodeList.get(9).left = treeNodeList.get(8);
     treeNodeList.get(9).right = treeNodeList.get(10);
-    sampleTree = treeNodeList.get(5);
+    sampleBSTRoot = treeNodeList.get(5);
   }
 
-  private GenerateBinarySearchTree() {
+  private TreeGenerator() {
 
   }
 
-  public static TreeNode generate(int size) {
+  public static TreeNode generateBST(int size) {
     int[] intArr = IntStream.rangeClosed(1, size).toArray();
     return giveRoot(intArr, 0, intArr.length - 1);
   }
 
-  public static TreeNode giveRoot(int[] arr, int start, int end) {
+  private static TreeNode giveRoot(int[] arr, int start, int end) {
     // BaseCase #1: Array has single element
     if (start == end) {
       return new TreeNode(null, null, arr[start]);
@@ -52,8 +54,33 @@ public class GenerateBinarySearchTree {
 
   }
 
-  public static TreeNode giveSampleTreeTenNodes() {
-    return sampleTree;
+  public static TreeNode giveSampleBST() {
+    return sampleBSTRoot;
+  }
+
+  public static TreeNode generatePerfectBinaryTree(int nLevels) {
+    if (nLevels <= 0) {
+      return null;
+    }
+    int numberOfNodes = (2 * ((int) Math.pow(2, nLevels - 1) - 1));
+
+    Map<Integer, TreeNode> treeNodeMap = IntStream.range(0, numberOfNodes).mapToObj(x -> x)
+        .collect(Collectors.toMap(Function.identity(), x -> new TreeNode(null, null, x)));
+
+    IntStream.range(0, numberOfNodes).forEach(x -> {
+      TreeNode parent = treeNodeMap.get(x);
+      if (2 * x + 2 > numberOfNodes - 1) { // A leaf node
+        return;
+      }
+      TreeNode leftSibling = treeNodeMap.get(2 * x + 1);
+      TreeNode rightSibling = treeNodeMap.get(2 * x + 2);
+      parent.left = leftSibling;
+      parent.right = rightSibling;
+
+    });
+
+    return treeNodeMap.get(0);
+
   }
 
 }

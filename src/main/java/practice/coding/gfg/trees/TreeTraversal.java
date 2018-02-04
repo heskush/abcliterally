@@ -108,6 +108,17 @@ public class TreeTraversal {
 
   }
 
+  /*
+   * https://www.geeksforgeeks.org/level-order-tree-traversal/
+   *
+   * In level order traversal one important thing to keep in mind is that one can keep track of all the nodes present at a certain
+   * level.
+   *
+   * NOTE: There is an alternate version of the same algorithm where we can use two queues to practically do the same thing.
+   *
+   * https://www.geeksforgeeks.org/level-order-traversal-line-line-set-2-using-two-queues/
+   */
+
   public static void levelOrderTraversal(TreeNode treeNode, Consumer<TreeNode> consumer) {
     if (treeNode == null)
       return;
@@ -130,6 +141,9 @@ public class TreeTraversal {
 
   }
 
+  /*
+   * https://www.geeksforgeeks.org/reverse-level-order-traversal/
+   */
   public static void levelOrderTraversalReverse(TreeNode treeNode, Consumer<TreeNode> consumer) {
     if (treeNode == null) {
       return;
@@ -157,6 +171,63 @@ public class TreeTraversal {
     while (!stack.isEmpty()) {
       consumer.accept(stack.pop());
     }
+
+  }
+
+  /*
+   *
+   * TODO: COMPLETE IT
+   *
+   * https://www.geeksforgeeks.org/perfect-binary-tree-specific-level-order-traversal/
+   */
+
+  public static void alternateLevelOrderTraversal(TreeNode root, Consumer<TreeNode> consumer) {
+    if (root == null) {
+      return;
+    }
+    consumer.accept(root);
+    LinkedList<TreeNode> list1 = new LinkedList<>();
+    LinkedList<TreeNode> list2 = new LinkedList<>();
+    LinkedList<TreeNode> source;
+    LinkedList<TreeNode> target;
+    list1.add(root.left);
+    list1.add(root.right);
+    while (!list1.isEmpty() || !list2.isEmpty()) {
+      source = list1.isEmpty() ? list2 : list1;
+      target = list1.isEmpty() ? list1 : list2;
+      int n = source.size();
+      LinkedList<TreeNode> right = new LinkedList<>();
+      for (int i = 0; i < n / 2; i++) {
+        TreeNode leftNode = source.get(i);
+        TreeNode rightNode = source.get(n - i - 1);
+        consumer.accept(leftNode);
+        consumer.accept(rightNode);
+        if (leftNode.left != null) {
+          target.add(leftNode.left);
+        }
+        if (leftNode.right != null) {
+          target.add(leftNode.right);
+        }
+        if (rightNode.right != null) {
+          right.addFirst(rightNode.right);
+        }
+        if (rightNode.left != null) {
+          right.addFirst(rightNode.left);
+        }
+
+      }
+      target.addAll(right);
+      source.clear();
+
+    }
+
+  }
+
+  public static void main(String[] args) {
+
+    // alternateLevelOrderTraversal(TreeGenerator.generatePerfectBinaryTree(5), System.out::println);
+
+    levelOrderTraversal(TreeGenerator.generatePerfectBinaryTree(5), System.out::println);
 
   }
 

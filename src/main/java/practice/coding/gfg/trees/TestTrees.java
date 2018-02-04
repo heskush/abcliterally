@@ -6,8 +6,8 @@ import java.util.stream.Collectors;
 // author -- hemantkumar
 public class TestTrees {
   public static void main(String[] args) {
-    TreeNode root = GenerateBinarySearchTree.generate(10);
-    TreeNode sampleTreeRoot = GenerateBinarySearchTree.giveSampleTreeTenNodes();
+    TreeNode root = TreeGenerator.generateBST(10);
+    TreeNode sampleTreeRoot = TreeGenerator.giveSampleBST();
     // TreeTraversal.recursivePreorderTraversal(sampleTreeRoot, System.out::println);
     // TreeTraversal.recursiveInorderTraversal(root, x -> System.out.println(x));
     // TreeTraversal.iterativeInorderTraversal(root, System.out::println);

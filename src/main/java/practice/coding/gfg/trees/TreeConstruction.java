@@ -1,6 +1,7 @@
 package practice.coding.gfg.trees;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +13,8 @@ import java.util.stream.IntStream;
 public class TreeConstruction {
 
   /*
+   * TODO: COMPLETE IT
+   *
    * https://www.geeksforgeeks.org/construct-tree-from-ancestor-matrix/
    */
   public static TreeNode fromAncestorMatrix(ArrayList<BitSet> bitMatrix) {
@@ -68,6 +71,7 @@ public class TreeConstruction {
     return rootNode;
 
   }
+
   // https://www.geeksforgeeks.org/full-and-complete-binary-tree-from-given-preorder-and-postorder-traversals/
   // The traversal combinations is pre and post: but we also have one more information i.e. the tree is a full binary tree.
 
@@ -94,4 +98,46 @@ public class TreeConstruction {
         constructFullTreeFromPreAndPost(rightPreOrder, rightPostOrder), root);
 
   }
+
+  /*
+   * https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/
+   */
+
+  public static TreeNode constructTreeFromLinkedListRepresentation(List<Integer> linkedListrepresentation) {
+    // Construct unrelated tree nodes
+    int n = linkedListrepresentation.size();
+    Map<Integer, TreeNode> treeNodeMap = IntStream.rangeClosed(0, n - 1).mapToObj(x -> x)
+        .collect(Collectors.toMap(Function.identity(), x -> new TreeNode(null, null, x)));
+
+    // Set the left and right nodes accordingly
+    IntStream.rangeClosed(0, n - 1).forEach(x -> {
+      int parentVal = linkedListrepresentation.get(x);
+      if (parentVal == -1) {
+        return;
+      }
+      TreeNode parentNode = treeNodeMap.get(parentVal);
+      if (parentNode.left == null) {
+        parentNode.left = treeNodeMap.get(x);
+      } else {
+        parentNode.right = treeNodeMap.get(x);
+      }
+
+    });
+    return treeNodeMap.get(0);
+
+  }
+
+  public static void main(String[] args) {
+
+    TreeNode treeNode = constructTreeFromLinkedListRepresentation(
+        Arrays.stream(new Integer[] { -1, 0, 0, 1, 1, 3, 5 }).collect(Collectors.toList()));
+
+    TreeNode treeNode1 =
+        constructFullTreeFromPreAndPost(Arrays.stream(new Integer[] { 1, 2, 4, 8, 9, 5, 3, 6, 7 }).collect(Collectors.toList()),
+            Arrays.stream(new Integer[] { 8, 9, 4, 5, 2, 6, 7, 3, 1 }).collect(Collectors.toList()));
+
+    TreeTraversal.levelOrderTraversal(treeNode, System.out::println);
+
+  }
+
 }

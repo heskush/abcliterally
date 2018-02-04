@@ -2,9 +2,9 @@ package practice.coding.gfg.trees;
 
 // author -- hemantkumar
 public class TreeNode {
-  TreeNode left;
-  TreeNode right;
-  Object data;
+  public TreeNode left;
+  public TreeNode right;
+  public Object data;
 
   public TreeNode(TreeNode left, TreeNode right, Object data) {
     this.left = left;
