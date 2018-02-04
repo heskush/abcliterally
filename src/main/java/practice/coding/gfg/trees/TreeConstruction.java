@@ -99,6 +99,15 @@ public class TreeConstruction {
 
   }
 
+  public static void testConstructFullTreeFromPreAndPost() {
+    TreeNode root =
+        constructFullTreeFromPreAndPost(Arrays.stream(new Integer[] { 1, 2, 4, 8, 9, 5, 3, 6, 7 }).collect(Collectors.toList()),
+            Arrays.stream(new Integer[] { 8, 9, 4, 5, 2, 6, 7, 3, 1 }).collect(Collectors.toList()));
+
+    TreeTraversal.levelOrderTraversal(root, System.out::println);
+
+  }
+
   /*
    * https://www.geeksforgeeks.org/construct-a-binary-tree-from-parent-array-representation/
    */
