@@ -41,7 +41,10 @@ public class TreeConstruction {
    * TREE CONSTRUCTION FROM TRAVERSAL ORDERS: For tree construction from the traversal the main issue is to find the root, and
    * split the remaining traversal into the traversal for left and right tree. For a binary tree, inorder traversal complimented
    * with (preorder,postorder or level order)is the only way to construct a generic binary tree. For any other combination one has
-   * to have some other information to remove ambiguity
+   * to have some other information to remove ambiguity.
+   *
+   * The combination of inorder and preorder(or postorder) is also usueful when trying to determine if one tree is a subtree of
+   * another tree. Then the inorder and preorder(or postorder) would be a substring of the parent tree's traversal.
    */
 
   // Works for both PreOrder and level order traversal.
