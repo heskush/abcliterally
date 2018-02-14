@@ -122,7 +122,7 @@ public class Miscellaneous {
       }
 
     }
-
+    return null;
   }
 
   public static void testLowestCommonAncestor() {
