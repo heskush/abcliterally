@@ -94,10 +94,35 @@ public class Miscellaneous {
   }
 
   /*
-   * TODO: SOLVE THIS https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/
+   *
+   *
+   * https://www.geeksforgeeks.org/find-maximum-path-sum-two-leaves-binary-tree/
    */
   public static int findMaxPathSumBetweenTwoLeaves(TreeNode root) {
-    return 1;
+
+    RecursiveVal ans = new RecursiveVal();
+    int maxRootToLeafPath = recurMaxPathBetweenTwoLeaves(root, ans);
+    return ans.val;
+
+  }
+
+  public static int recurMaxPathBetweenTwoLeaves(TreeNode root, RecursiveVal ans) {
+    if (root == null) {
+      return 0;
+    }
+    if (root.left == null && root.right == null) {
+      return (int) root.data;
+    }
+    int leftChildMaxPath = recurMaxPathBetweenTwoLeaves(root.left, ans);
+    int rightChildMaxPath = recurMaxPathBetweenTwoLeaves(root.right, ans);
+    if (root.left != null && root.right != null) {
+      ans.val = Math.max(ans.val, leftChildMaxPath + rightChildMaxPath + (int) root.data);
+      return Math.max(leftChildMaxPath + (int) root.data, rightChildMaxPath + (int) root.data);
+
+    }
+
+    return root.left == null ? rightChildMaxPath + (int) root.data : leftChildMaxPath + (int) root.data;
+
   }
 
   /*
@@ -175,12 +200,34 @@ public class Miscellaneous {
 
   }
 
+  public static void testfindMaxPathSumBetweenTwoLeaves() {
+    TreeNode root =
+        new TreeNode(
+            new TreeNode(new TreeNode(new TreeNode(null, null, 2), new TreeNode(null, null, 6), -8), new TreeNode(null, null, 1),
+                5),
+            new TreeNode(new TreeNode(null, null, 3),
+                new TreeNode(null,
+                    new TreeNode(new TreeNode(null, null, 4), new TreeNode(new TreeNode(null, null, 10), null, -1), 0), 9),
+                6),
+            -15);
+
+    int maxPathSumBetweenTwoLeaves = findMaxPathSumBetweenTwoLeaves(root);
+    // Should be 27
+    System.out.println(maxPathSumBetweenTwoLeaves);
+  }
+
   public static void main(String[] args) {
 
     // testLowestCommonAncestor();
     // testBinaryToCircularLinkedList();
     // testremoveCompletePathWithSumLess();
+    testfindMaxPathSumBetweenTwoLeaves();
 
   }
+
+}
+
+class RecursiveVal {
+  int val = 0;
 
 }
