@@ -77,7 +77,9 @@ public class ConstructionAndConversion {
    */
 
   /*
-   * --------------RED---------- https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
+   * --------------RED----------
+   *
+   * https://www.geeksforgeeks.org/sorted-linked-list-to-balanced-bst/
    *
    * This would have been easily implemented if it were an array. Because then accessing elements would have been O(1). But for
    * doing this for linked list in O(1) time, a different approach needs to be used.
@@ -101,6 +103,7 @@ public class ConstructionAndConversion {
       TreeNode right = root.right;
       TreeTraversal.recursiveInorderTraversal(root, x -> IncrementalVal.increase());
       int nElements = IncrementalVal.val;
+      return null;
 
     }
 
