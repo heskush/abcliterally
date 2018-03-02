@@ -1,7 +1,11 @@
 package practice.coding.gfg.binarysearchtrees;
 
+import java.util.ArrayList;
+import java.util.Stack;
+
 import practice.coding.gfg.trees.TreeNode;
 import practice.coding.gfg.trees.TreeTraversal;
+import practice.language.java.util.DemonstrationUtil;
 
 // author -- hemantkumar
 public class Miscellaneous {
@@ -133,8 +137,253 @@ public class Miscellaneous {
 
   }
 
+  /*
+   * TODO:
+   *
+   * -------------------------RED--------------------------------------
+   * https://www.geeksforgeeks.org/check-for-identical-bsts-without-building-the-trees/
+   *
+   */
+  static class CheckIdenticalBSTFromSequence {
+
+  }
+
+  /*
+   * TODO: https://www.geeksforgeeks.org/merge-two-bsts-with-limited-extra-space/
+   */
+
+  static class MergeTwoBSTWithLimitedExtraSpace {
+    static TreeNode root1 = new TreeNode(TreeNode.leafNode(1), TreeNode.leafNode(5), 3);
+    static TreeNode root2 = new TreeNode(TreeNode.leafNode(2), TreeNode.leafNode(6), 4);
+
+    public static void execute() {
+
+      Stack<TreeNode> stack1 = new Stack<TreeNode>();
+      Stack<TreeNode> stack2 = new Stack<>();
+      TreeNode stack1NewNode = root1;
+      TreeNode stack2NewNode = root2;
+
+    }
+
+    public static TreeNode[] nextElementFromStack(Stack<TreeNode> stack, TreeNode newNode) {
+      while (newNode != null) {
+        newNode.pus
+
+      }
+
+    }
+
+    public static void demonstrate() {
+      System.out.println("MergeTwoBSTWithLimitedExtraSpace.demonstrate");
+      execute();
+      DemonstrationUtil.terminate();
+    }
+
+  }
+
+  /*
+   * 
+   *
+   * ----------------------------YELLOW---------------------------------------
+   * https://www.geeksforgeeks.org/fix-two-swapped-nodes-of-bst/
+   *
+   * The straight-forward way would take O(nlogn) time and O(n) space complexity. A better approach is to do it in O(n) time and
+   * O(n) space.
+   */
+
+  static class fixBstWithTwoNodesSwapped {
+    // 10 and 2 are swapped
+    static TreeNode root = new TreeNode(new TreeNode(TreeNode.leafNode(1), TreeNode.leafNode(3), 10),
+        new TreeNode(TreeNode.leafNode(7), TreeNode.leafNode(12), 2), 6);
+
+    public static void execute() {
+      int[] swapped = findSwapped(root);
+      swapNodes(root, swapped);
+    }
+
+    public static void demonstrate() {
+      System.out.println("fixBstWithTwoNodesSwapped.demonstrate");
+      execute();
+      TreeTraversal.levelOrderTraversal(root, System.out::println);
+
+    }
+
+    /*
+     * One may want to think about the fact that if two elements in a sorted array are swapped then, how to find the two swapped
+     * elements. the bigger swapped element would be greater than the next element and the smaller swapped element would be
+     * greater than the previous element. Because we are swapping a small value with a large value.
+     */
+    static int[] findSwapped(TreeNode root) {
+      ArrayList<Integer> inOrderTraversal = new ArrayList<>();
+      TreeTraversal.recursiveInorderTraversal(root, x -> inOrderTraversal.add((int) x.data));
+      int maxSwapped = -1;
+      int minSwapped = -1;
+      boolean foundMax = false;
+      boolean foundMin = false;
+      int previous = inOrderTraversal.get(0);
+      int current;
+
+      for (int i = 1; i < inOrderTraversal.size() - 1; i++) {
+        current = inOrderTraversal.get(i);
+
+        if (current < previous) {
+          if (maxSwapped == -1) {
+            maxSwapped = previous;
+            previous = current;
+            continue;
+          }
+          minSwapped = current;
+          previous = current;
+          break;
+
+        }
+        previous = current;
+
+      }
+
+      return new int[] { minSwapped, maxSwapped };
+
+    }
+
+    static void swapNodes(TreeNode root, int[] swappedValues) {
+      int rootData = (int) root.data;
+      int minValue = swappedValues[0];
+      int maxValue = swappedValues[1];
+      TreeNode[] currentMinValNodeArr = new TreeNode[] { null };
+      TreeNode[] currentMaxValNodeArr = new TreeNode[] { null };
+      TreeTraversal.recursiveInorderTraversal(root, x -> {
+        if ((int) x.data == minValue) {
+          currentMinValNodeArr[0] = x;
+        }
+        if ((int) x.data == maxValue) {
+          currentMaxValNodeArr[0] = x;
+        }
+      });
+      TreeNode currentMinValNode = currentMinValNodeArr[0];
+      TreeNode currentMaxValNode = currentMaxValNodeArr[0];
+      int tmp = (int) currentMinValNode.data;
+      currentMinValNode.data = currentMaxValNode.data;
+      currentMaxValNode.data = tmp;
+
+    }
+
+  }
+
+  /*
+   * -----------------------------------RED---------RED-----------------------------------------
+   *
+   * https://www.geeksforgeeks.org/find-if-there-is-a-triplet-in-bst-that-adds-to-0/
+   *
+   * This needs to be done in O(n^2) time and O(LogN) space complexity. Modification of BST is allowed
+   */
+
+  static class findZeroSumTripletInBalancedBST {
+    static TreeNode root = new TreeNode(new TreeNode(null, TreeNode.leafNode(-8), -13),
+        new TreeNode(new TreeNode(TreeNode.leafNode(7), null, 13), TreeNode.leafNode(15), 14), 6);
+
+    static TreeNode[] convertBSTToDLL(TreeNode node) {
+      TreeNode[] finalMinMAx = recur_BstToDLL(node);
+
+      return finalMinMAx;
+
+    }
+
+    static TreeNode[] recur_BstToDLL(TreeNode node) {
+      if (node == null) {
+        return null;
+      }
+      TreeNode[] fromLeft = recur_BstToDLL(node.left);
+      TreeNode[] fromRight = recur_BstToDLL(node.right);
+      TreeNode treeMinima = null;
+      TreeNode treeMaxima = null;
+      if (fromLeft != null && fromRight != null) {
+        fromLeft[1].right = node;
+        fromRight[0].left = node;
+        node.left = fromLeft[1];
+        node.right = fromRight[0];
+        treeMaxima = fromRight[1];
+        treeMinima = fromLeft[0];
+
+      }
+      if (fromLeft == null && fromRight != null) {
+        fromRight[0].left = node;
+        node.right = fromRight[0];
+        treeMaxima = fromRight[1];
+        treeMinima = node;
+      }
+      if (fromRight == null && fromLeft != null) {
+        fromLeft[1].right = node;
+        node.left = fromLeft[1];
+        treeMaxima = node;
+        treeMinima = fromLeft[0];
+
+      }
+      if (fromLeft == null && fromRight == null) {
+        treeMaxima = node;
+        treeMinima = node;
+      }
+      return new TreeNode[] { treeMinima, treeMaxima };
+
+    }
+
+    public static boolean execute() {
+      TreeNode[] treeNodes = convertBSTToDLL(root);
+      TreeNode head = treeNodes[0];
+      TreeNode tail = treeNodes[1];
+      TreeNode leftBoundary, rightBoundary;
+      boolean isZeroSumTripletPresent = false;
+      while (tail != null) {
+        leftBoundary = head;
+        rightBoundary = tail.left;
+        int sumExpected = (int) tail.data;
+        while (leftBoundary != rightBoundary && !isZeroSumTripletPresent) {
+          int leftVal = (int) leftBoundary.data;
+          int rightVal = (int) rightBoundary.data;
+          int sumObtained = leftVal + rightVal;
+          if (-sumObtained < sumExpected) {
+            leftBoundary = leftBoundary.right;
+
+          }
+          if (-sumObtained > sumExpected) {
+            rightBoundary = rightBoundary.left;
+          }
+          if (-sumObtained == sumExpected) {
+            isZeroSumTripletPresent = true;
+            System.out.printf(" The triplet is present for nodes : %s,%s,%s %n", leftBoundary.toString(),
+                rightBoundary.toString(), tail.toString());
+            break;
+          }
+        }
+        tail = tail.left;
+      }
+      return isZeroSumTripletPresent;
+
+    }
+
+    public static void demonstrate() {
+      System.out.println("findZeroSumTripletInBalancedBST.demonstrate");
+
+      System.out.println("ZERO SUM TRIPLET IS PRESENT " + execute());
+      DemonstrationUtil.terminate();
+
+    }
+
+  }
+
+  /*
+   * TODO:
+   *
+   * ------------------------------RED-------------------------------------------
+   *
+   * https://www.geeksforgeeks.org/leaf-nodes-preorder-binary-search-tree/
+   */
+  static class printLeafNodesFromPreOrderTraversalOfBST {
+
+  }
+
   public static void main(String[] args) {
-    MaxBSTinBinaryTree.demonstrate_type2();
+    // findZeroSumTripletInBalancedBST.demonstrate();
+    fixBstWithTwoNodesSwapped.demonstrate();
 
   }
 

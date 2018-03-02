@@ -9,6 +9,12 @@ import practice.language.java.util.DemonstrationUtil;
 // author -- hemantkumar
 
 public class TreeTraversal {
+  /*
+   * Tree Traversal methods are important in the sense that several problems involving binary search tree that have a counterpart
+   * in arrays (e.g. finding pair with given sum) can be solved using the same methods in trees using the traversal methods. e.g.
+   * see this https://www.geeksforgeeks.org/find-a-pair-with-given-sum-in-bst/
+   */
+
   private TreeTraversal() {
 
   }
