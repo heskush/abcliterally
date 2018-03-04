@@ -3,6 +3,4 @@ and the nodes at the last level are all left aligned.
 2. Complete binary trees are mainly used in heap based data structures.
 3. The nodes in the complete binary tree are inserted from left to right in one level at a time.
 4. If a level is full, the node is inserted in a new level.
-5.Complete binary trees are generally represented using arrays. The array representation is better because it doesn’t contain any empty
- slot. Given parent index i, its left child is given by 2 * i + 1 and its right child is given by 2 * i + 2. So no extra space is
- wasted and space to store left and right pointers is saved.
+5.Complete binary trees are generally represented using arrays. The array representation is better because it doesn’t contain any empty slot. Given parent index i, its left child is given by 2 * i + 1 and its right child is given by 2 * i + 2. So no extra space is wasted and space to store left and right pointers is saved.

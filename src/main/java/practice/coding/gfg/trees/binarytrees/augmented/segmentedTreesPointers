@@ -1,0 +1,34 @@
+Segmented trees are useful when you have to do a range based query.
+They allow creation in O(n)
+Query and update takes O(LogN)
+The tree takes O(N) space.
+
+Representation of segmented trees:
+Segment trees can be represented as a sequential array even though they are not always complete binary trees. We know
+that array representation of a binary tree is equivalent to a level order traversal of the tree(top to bottom and left
+to right).So to be able to directly get the positions of the children of a node at index 'i', it's necessary to have a
+fixed number of nodes between the node at index 'i' and it's children. This can be assured when the the tree is a
+complete binary tree or a perfect binary tree (which is also a complete  binary tree. )
+
+But then if a segment tree is not always a complete binary tree, how can it be represented in the form of an array?
+This is possible because a segment tree is always complimented by it's corresponding data array. At each index of the
+segment tree array we also keep track of the range of data array it represents. If the range has just one element then
+the corresponding node won't have an children which is marked by the default value at the theoretical position of it's
+children. The same is done when traversing the segment tree array.
+
+What should be the size of the array?
+If 'n' were a power of two then the corresponding tree would be a perfect binary tree(all the roots would be at the
+same level); in that case the total number of nodes inside the tree would be 2*n - 1. But if it's not then the total
+number of nodes needed would be way less than that and all the roots might not be at the same level but because we have
+to store the nodes sequentially in an array, we use an upper limit on the maximum number of nodes that can be used and
+that upper limit would be found by upgrading 'n' to the nearest higher power of 2.
+
+
+What is the time complexity of a query on a segment tree?
+The time complexity of a query is O(LogN) because at each level we only expand into two nodes at maximum and there are
+logN levels.
+This can be easily proved by contradiction.
+Assume that at a level we try to expand three nodes and then try to prove it.
+
+
+
