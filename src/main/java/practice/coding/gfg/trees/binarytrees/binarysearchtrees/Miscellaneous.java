@@ -232,7 +232,7 @@ public class Miscellaneous {
      * https://www.geeksforgeeks.org/fix-two-swapped-nodes-of-bst/
      *
      * The straight-forward way would take O(nlogn) time and O(n) space complexity. A better approach is to do it in O(n) time and
-     * O(n) space.
+     * O(n) space. An even better approach can be be to do it in constant space. (given modfication of tree is allowed)
      */
 
     static class fixBstWithTwoNodesSwapped {
