@@ -1,0 +1,13 @@
+
+
+
+All the different variations of pattern searching arise from two basic different ways to search for a pattern.
+1. Preprocessing Text: This gives a time complexity of every search to be O(M) where M is the size of the patter. But the preprocessing of the text takes time and the preprocessed text takes extra space. This is useful when the text is static. e.g. Tries.
+2. Preprocessing  keys: This gives a time complexity of every search to be O(N) where N is the size of the text in which the search is to be made.
+
+
+
+
+Quick Overviews:
+RMP Algorithm: https://www.youtube.com/watch?v=GTJr8OvyEVQ
+

@@ -1,0 +1,5 @@
+All the different variations of data structures for providing range based queries arise due to the different
+ trade-offs between space complexity and time complexity of various operations like query and point or range
+ update. For e.g. the various options available for range minimum queries (RMQ) like segment tree, 2-D minima
+ array , sparse table, square root decomposition and binary indexed tree are different in their complexities
+ and this difference should always be kept in mind when trying to solve a problem involving range based queries.
