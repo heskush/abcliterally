@@ -1,1 +1,7 @@
 https://www.geeksforgeeks.org/dynamic-programming/
+
+Module Structure:
+Each Sub Package is named as per the difficultly level determined on GFG page mentioned above.
+Within each sub-package there are two main classes:
+Classics: Problems which are thought to be the most famous ones.
+Others: Not so famous ones

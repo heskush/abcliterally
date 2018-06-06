@@ -7,10 +7,8 @@ public class Sample {
     public static void main(String[] args) {
 //        System.out.println(Integer.SIZE);
         BitSet bitSet = new BitSet(10);
-        bitSet.set(1, 3, true);
-        System.out.println(bitSet.nextSetBit(4));
-        bitSet.set(1, 3, false);
-        System.out.println(bitSet.toString());
+        System.out.println(Integer.parseInt("1010", 2));
+        System.out.println(BitSet.valueOf(new long[]{100}));
 
     }
 }
