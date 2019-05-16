@@ -1,13 +1,11 @@
 package practice2019.coding.gfg.sorting;
 
-import jdk.nashorn.internal.ir.LexicalContextNode;
+import practice2019.coding.gfg.helper.CompositeData;
+import practice2019.coding.gfg.helper.LinkedList;
+import practice2019.coding.gfg.helper.ListNode;
 
 import java.util.Arrays;
 import java.util.BitSet;
-import java.util.Collections;
-import java.util.List;
-import java.util.stream.Collectors;
-import java.util.stream.IntStream;
 
 public class Basic {
     public static void main(String[] args) {
@@ -197,36 +195,36 @@ public class Basic {
         return merged;
     }
 
-    public static void mergeSortForLinkedList(Node head) {
+    public static void mergeSortForLinkedList(ListNode head) {
         System.out.println("Basic.mergeSortForLinkedListRecur");
         System.out.printf("The source data is %s%n", head.toString());
         System.out.printf("The sorted array is %s%n", mergeSortForLinkedListRecur(head));
 
     }
 
-    public static Node mergeSortForLinkedListRecur(Node head) {
+    public static ListNode mergeSortForLinkedListRecur(ListNode head) {
         if (head == null) {
             return null;
         }
         if (head.next == null) {
             return head;
         }
-        Node middleNode = getMiddle(head);
-        Node rightList = middleNode.next;
+        ListNode middleNode = getMiddle(head);
+        ListNode rightList = middleNode.next;
         middleNode.next = null;
-        Node sortedLeft = mergeSortForLinkedListRecur(head);
-        Node sortedRight = mergeSortForLinkedListRecur(rightList);
+        ListNode sortedLeft = mergeSortForLinkedListRecur(head);
+        ListNode sortedRight = mergeSortForLinkedListRecur(rightList);
         return mergeList(sortedLeft, sortedRight);
     }
 
-    private static Node mergeList(Node sortedLeft, Node sortedRight) {
+    private static ListNode mergeList(ListNode sortedLeft, ListNode sortedRight) {
         if (sortedLeft == null) {
             return sortedRight;
         }
         if (sortedRight == null) {
             return sortedLeft;
         }
-        Node head;
+        ListNode head;
         if (sortedLeft.data < sortedRight.data) {
             head = sortedLeft;
             head.next = mergeList(sortedLeft.next, sortedRight);
@@ -239,7 +237,7 @@ public class Basic {
 
     }
 
-    private static Node getMiddle(Node head) {
+    private static ListNode getMiddle(ListNode head) {
         if (head == null) {
             return null;
         }
@@ -250,7 +248,7 @@ public class Basic {
             return head;
 
         }
-        Node fastNode = head, slowNode = head;
+        ListNode fastNode = head, slowNode = head;
         while (fastNode != null) {
             fastNode = fastNode.next;
             if (fastNode != null) {
@@ -409,32 +407,32 @@ public class Basic {
 
     }
 
-    public static void quickSortForLinkedList(Node head) {
+    public static void quickSortForLinkedList(ListNode head) {
         System.out.println("Basic.quickSortForLinkedList");
         System.out.printf("The source data is %s%n", new LinkedList(null,head,null).toString());
-        Node tail = head;
+        ListNode tail = head;
         while (tail.next != null) {
             tail = tail.next;
         }
-        Node newHead = quickSortForLinkedListRecur(head, tail);
+        ListNode newHead = quickSortForLinkedListRecur(head, tail);
         System.out.printf("The sorted data is %s%n", new LinkedList(null, newHead,null).toString());
 
     }
 
     // TODO: Fix it
-    private static Node quickSortForLinkedListRecur(Node head, Node tail) {
+    private static ListNode quickSortForLinkedListRecur(ListNode head, ListNode tail) {
         if (head == tail) {
             return head;
         }
         if (head.next == tail) {
-            Node min = head.data < head.next.data ? head : tail;
-            Node max = head.data < head.next.data ? tail : head;
+            ListNode min = head.data < head.next.data ? head : tail;
+            ListNode max = head.data < head.next.data ? tail : head;
             min.next = max;
             max.next = null;
             return min;
         }
-        Node[] newMarkers = partition(head, tail);
-        Node newHead, pivotPreviousNode, pivotNode, newTail;
+        ListNode[] newMarkers = partition(head, tail);
+        ListNode newHead, pivotPreviousNode, pivotNode, newTail;
         newHead = newMarkers[0];
         pivotPreviousNode = newMarkers[1];
         pivotNode = newMarkers[2];
@@ -450,10 +448,10 @@ public class Basic {
 
     }
 
-    private static Node[] partition(Node head, Node tail) {
-        Node[] partitionNodes = new Node[2];
-        Node boundary = null, current = head, previous = null, currentNext, boundaryNext;
-        Node pivotNode = tail, pivotPreviousNode = null;
+    private static ListNode[] partition(ListNode head, ListNode tail) {
+        ListNode[] partitionNodes = new ListNode[2];
+        ListNode boundary = null, current = head, previous = null, currentNext, boundaryNext;
+        ListNode pivotNode = tail, pivotPreviousNode = null;
         int pivotValue = tail.data;
         while (current != null) {
             if (current.data <= pivotValue) {
@@ -497,89 +495,7 @@ public class Basic {
             }
         }
 
-        return new Node[]{head, pivotPreviousNode, pivotNode, tail};
+        return new ListNode[]{head, pivotPreviousNode, pivotNode, tail};
     }
 }
 
-class CompositeData {
-    int primary;
-    int secondary;
-
-    CompositeData(int primary, int secondary) {
-        this.primary = primary;
-        this.secondary = secondary;
-    }
-
-    public static CompositeData[] generateList() {
-        CompositeData a1 = new CompositeData(4, 2);
-        CompositeData a2 = new CompositeData(4, 3);
-        CompositeData a3 = new CompositeData(4, 5);
-        CompositeData b1 = new CompositeData(1, 1);
-        CompositeData b2 = new CompositeData(1, 2);
-        CompositeData c = new CompositeData(2, 1);
-        CompositeData d = new CompositeData(3, 1);
-        CompositeData e = new CompositeData(5, 1);
-        CompositeData[] data = {a1, e, b1, d, a2, c, a3, b2};
-        return data;
-
-    }
-
-    @Override
-    public String toString() {
-        return String.format("(%d | %d)", primary, secondary);
-    }
-}
-
-class Node {
-    int data;
-    Node next;
-
-    Node(int data) {
-        this.data = data;
-    }
-
-
-}
-
-class LinkedList {
-    List<Node> nodes;
-    Node head;
-    Node tail;
-
-    LinkedList(List<Node> nodes, Node head, Node tail) {
-        this.nodes = nodes;
-        this.head = head;
-        this.tail = tail;
-    }
-
-    public static LinkedList createDescendingList() {
-        List<Node> nodes = IntStream.rangeClosed(1, 10).mapToObj(Node::new).collect(Collectors.toList());
-        Collections.reverse(nodes);
-        Node head = connectNodes(nodes, 0);
-        Node tail = nodes.get(nodes.size() - 1);
-        return new LinkedList(nodes, head, tail);
-
-    }
-
-    private static Node connectNodes(List<Node> list, int index) {
-        if (index > list.size() - 1) {
-            return null;
-        }
-        Node head = list.get(index);
-        head.next = connectNodes(list, index + 1);
-        return head;
-    }
-
-    @Override
-    public String toString() {
-        StringBuilder builder = new StringBuilder();
-        Node head = this.head;
-        while (head != null) {
-            builder.append(head.data);
-            builder.append(",");
-            head = head.next;
-        }
-        return builder.toString();
-
-    }
-}

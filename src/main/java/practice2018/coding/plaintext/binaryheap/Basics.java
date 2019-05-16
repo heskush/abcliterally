@@ -12,7 +12,7 @@ public class Basics {
         if (size / 2 - 2 > i) {
             return;
         }
-        //Not a leaf Node.
+        //Not a leaf ListNode.
         int leftChildIndex = 2 * i + 1;
         int rightChildIndex = 2 * i + 2;
         int leftChildVal = arr[leftChildIndex];
